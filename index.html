@@ -1,1 +1,137 @@
-
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07130f">
+<title>SER DT | Modo Carrera</title>
+<style>
+:root{--bg:#07110e;--panel:#101d18;--panel2:#162720;--line:#2b4036;--green:#b8ff5c;--muted:#9cb1a5;--white:#f4f8f5;--red:#ff625e;--gold:#ffd36b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -20%,#1b4932 0%,var(--bg) 55%);color:var(--white);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh}
+button,select{font:inherit}button{cursor:pointer;border:0}
+.wrap{max-width:1150px;margin:auto;padding:22px 18px 48px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:25px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:950;letter-spacing:1.4px;font-size:22px}.brandmark{display:grid;place-items:center;width:42px;height:42px;background:var(--green);color:#102015;border-radius:13px;font-size:20px;box-shadow:0 0 24px #b8ff5c30}
+.pill{border:1px solid var(--line);color:var(--muted);border-radius:99px;padding:8px 12px;font-size:12px;letter-spacing:.7px}
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;align-items:stretch}
+.panel{background:linear-gradient(145deg,#13231b,#0c1712);border:1px solid var(--line);border-radius:22px;padding:23px;box-shadow:0 18px 55px #0003}
+.eyebrow{font-size:11px;font-weight:900;letter-spacing:2px;color:var(--green);text-transform:uppercase}
+h1{font-size:clamp(32px,5vw,56px);line-height:.98;letter-spacing:-2px;margin:13px 0 15px}h1 span{color:var(--green)}
+p{color:var(--muted);line-height:1.55;margin:0}
+.field{margin-top:20px}.field label{display:block;color:#c8d8ce;font-size:12px;font-weight:800;margin-bottom:9px;letter-spacing:.5px}
+select{width:100%;background:#09130f;color:var(--white);border:1px solid #344a3d;border-radius:12px;padding:13px 14px;outline:none}
+.primary{background:var(--green);color:#102015;border-radius:12px;padding:14px 17px;font-weight:950;width:100%;margin-top:17px;transition:.2s}.primary:hover{filter:brightness(1.06);transform:translateY(-1px)}
+.secondary{background:#21352a;color:var(--white);border:1px solid #3c5647;border-radius:11px;padding:10px 13px;font-weight:800}
+.club-preview{display:flex;flex-direction:column;justify-content:space-between;gap:20px;min-height:310px;background:linear-gradient(160deg,#193c29,#0e1a14 75%);position:relative;overflow:hidden}
+.club-preview:after{content:"";position:absolute;width:240px;height:240px;border:1px solid #ffffff12;border-radius:50%;right:-65px;bottom:-105px;box-shadow:0 0 0 25px #ffffff08,0 0 0 50px #ffffff05}
+.preview-head{display:flex;justify-content:space-between;gap:10px;position:relative;z-index:1}
+.bigcrest{font-size:60px;line-height:1;filter:drop-shadow(0 8px 12px #0005)}
+.preview-title{font-size:24px;font-weight:950;margin-top:13px}
+.statrow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;position:relative;z-index:1}
+.stat{background:#06110c80;border:1px solid #ffffff12;border-radius:12px;padding:12px}.stat small{display:block;color:var(--muted);font-size:10px;letter-spacing:1px}.stat strong{font-size:19px;display:block;margin-top:5px}
+.sectionhead{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:30px 0 13px}.sectionhead h2{font-size:20px;margin:0}.sectionhead p{font-size:12px}
+.dashboard{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.match{background:#0d1913;border:1px solid var(--line);border-radius:18px;padding:17px}
+.matchtop{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;font-weight:800;letter-spacing:1px;margin-bottom:17px}
+.scoreboard{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px}
+.team{text-align:center}.crest{font-size:35px;display:block;margin-bottom:6px}.teamname{font-size:12px;font-weight:900}.abbr{font-size:10px;color:var(--muted);margin-top:3px}
+.score{font-size:29px;font-weight:1000;letter-spacing:2px;background:#e9f0e9;color:#122017;border-radius:10px;padding:10px 13px;min-width:94px;text-align:center}
+.clock{font-size:10px;color:var(--green);font-weight:900;text-align:center;margin-top:10px;letter-spacing:1px}
+.events{font-size:12px;color:var(--muted);border-top:1px solid var(--line);margin-top:15px;padding-top:12px;min-height:34px}
+.bottomgrid{display:grid;grid-template-columns:1.15fr .85fr;gap:16px;margin-top:16px}
+table{border-collapse:collapse;width:100%;font-size:12px}th{color:var(--muted);font-size:10px;letter-spacing:.8px;text-align:left;padding:10px 7px;border-bottom:1px solid var(--line)}td{padding:11px 7px;border-bottom:1px solid #26372e}td:last-child,th:last-child{text-align:right}.rank{color:var(--green);font-weight:900}.clubcell{font-weight:800}.you{color:var(--green)}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.actions button{flex:1;min-width:130px}
+.notice{font-size:11px;color:#8da294;margin-top:12px;line-height:1.5}
+footer{margin-top:26px;text-align:center;color:#6e8376;font-size:11px;letter-spacing:.5px}
+.hidden{display:none!important}
+@media(max-width:760px){.wrap{padding:16px 12px 35px}.hero,.dashboard,.bottomgrid{grid-template-columns:1fr}.panel{padding:18px}.club-preview{min-height:245px}.top{margin-bottom:18px}.pill{font-size:10px}.score{font-size:24px;min-width:80px}.teamname{font-size:11px}.sectionhead{margin-top:23px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div class="brand"><div class="brandmark">⚽</div><div>SER <span style="color:var(--green)">DT</span><div style="font-size:9px;color:var(--muted);letter-spacing:2px;margin-top:2px">MODO CARRERA</div></div></div>
+  <div class="pill">● TEMPORADA 2026 · DEMO JUGABLE</div>
+</header>
+<section class="hero">
+  <div class="panel">
+    <div class="eyebrow">Tu club. Tus decisiones.</div>
+    <h1>EL FÚTBOL<br>SE JUEGA <span>DESDE EL BANCO.</span></h1>
+    <p>Elegí un equipo, prepará el partido y viví una simulación con marcador, minutos y tabla. Cada partido es una nueva historia.</p>
+    <div class="field"><label for="club">ELEGÍ TU CLUB</label>
+      <select id="club">
+        <option value="Gimnasia">Gimnasia y Esgrima La Plata</option>
+        <option value="Estudiantes">Estudiantes de La Plata</option>
+        <option value="River">River Plate</option><option value="Boca">Boca Juniors</option>
+        <option value="Racing">Racing Club</option><option value="Independiente">Independiente</option>
+        <option value="San Lorenzo">San Lorenzo</option><option value="Lanús">Lanús</option>
+        <option value="Talleres">Talleres</option><option value="Belgrano">Belgrano</option>
+        <option value="Rosario Central">Rosario Central</option><option value="Newell's">Newell's Old Boys</option>
+        <option value="Vélez">Vélez Sarsfield</option><option value="Huracán">Huracán</option>
+      </select>
+    </div>
+    <button class="primary" id="start">ENTRAR AL VESTUARIO →</button>
+    <div class="notice">Los resultados de esta demo se generan dentro del juego; no son resultados reales de la Liga Profesional.</div>
+  </div>
+  <div class="panel club-preview">
+    <div class="preview-head"><div><div class="eyebrow">TU PRÓXIMO DESAFÍO</div><div class="preview-title" id="previewName">Gimnasia</div><p style="font-size:12px;margin-top:5px">Liga Profesional · Argentina</p></div><div class="bigcrest" id="previewCrest">🐺</div></div>
+    <div class="statrow"><div class="stat"><small>OBJETIVO</small><strong>Top 10</strong></div><div class="stat"><small>PLANTEL</small><strong id="rating">72</strong></div><div class="stat"><small>ESPÍRITU</small><strong>100%</strong></div></div>
+  </div>
+</section>
+<section id="game" class="hidden">
+  <div class="sectionhead"><div><div class="eyebrow">Centro de mando</div><h2 id="welcome">Bienvenido, DT</h2></div><button class="secondary" id="back">Cambiar club</button></div>
+  <div class="dashboard">
+    <div class="match">
+      <div class="matchtop"><span>PRÓXIMO PARTIDO</span><span id="round">FECHA 1</span></div>
+      <div class="scoreboard">
+        <div class="team"><span class="crest" id="homeCrest">🐺</span><div class="teamname" id="homeName">GIMNASIA</div><div class="abbr">LOCAL</div></div>
+        <div><div class="score" id="score">— : —</div><div class="clock" id="clock">LISTO PARA JUGAR</div></div>
+        <div class="team"><span class="crest" id="awayCrest">🔴⚪</span><div class="teamname" id="awayName">RIVAL</div><div class="abbr">VISITANTE</div></div>
+      </div>
+      <div class="events" id="events">Elegí jugar para simular el partido.</div>
+      <div class="actions"><button class="primary" id="play" style="margin-top:0">▶ SIMULAR PARTIDO</button><button class="secondary" id="next">Siguiente fecha</button></div>
+    </div>
+    <div class="match">
+      <div class="matchtop"><span>PLAN DE PARTIDO</span><span>4-3-3</span></div>
+      <div style="font-size:15px;font-weight:900;margin-bottom:7px">Elegí tu enfoque</div>
+      <p style="font-size:12px">La táctica modifica las posibilidades de tu equipo durante la simulación.</p>
+      <div class="field"><label for="tactic">ESTILO DE JUEGO</label><select id="tactic"><option value="balanced">Equilibrado</option><option value="attack">Ofensivo</option><option value="defense">Defensivo</option></select></div>
+      <div class="field"><label for="captain">CAPITÁN DEL EQUIPO</label><select id="captain"><option>El capitán del equipo</option><option>El goleador</option><option>El jugador más experimentado</option></select></div>
+      <div class="statrow" style="margin-top:15px"><div class="stat"><small>VICTORIAS</small><strong id="wins">0</strong></div><div class="stat"><small>EMPATES</small><strong id="draws">0</strong></div><div class="stat"><small>DERROTAS</small><strong id="losses">0</strong></div></div>
+    </div>
+  </div>
+  <div class="bottomgrid">
+    <div class="match"><div class="matchtop"><span>TABLA DE POSICIONES</span><span>SIMULACIÓN</span></div><table><thead><tr><th>#</th><th>CLUB</th><th>PTS</th></tr></thead><tbody id="tableBody"></tbody></table></div>
+    <div class="match"><div class="matchtop"><span>ÚLTIMO RESULTADO</span><span>PARTIDOS</span></div><div id="lastResult" style="font-size:14px;font-weight:900">Todavía no jugaste partidos.</div><div class="notice">La tabla y los resultados pertenecen a tu partida de SER DT. Esta demo no consulta marcadores reales ni actualiza automáticamente el fútbol real.</div></div>
+  </div>
+</section>
+<footer>SER DT · HECHO PARA VIVIR EL FÚTBOL DESDE EL BANCO</footer>
+</div>
+<script>
+const clubs=[
+ {n:"Gimnasia",full:"Gimnasia y Esgrima La Plata",c:"🐺",r:72},{n:"Estudiantes",full:"Estudiantes de La Plata",c:"🔴⚪",r:77},
+ {n:"River",full:"River Plate",c:"🔴⚪",r:86},{n:"Boca",full:"Boca Juniors",c:"🔵🟡",r:85},
+ {n:"Racing",full:"Racing Club",c:"🩵⚪",r:80},{n:"Independiente",full:"Independiente",c:"🔴",r:78},
+ {n:"San Lorenzo",full:"San Lorenzo",c:"🔵🔴",r:75},{n:"Lanús",full:"Lanús",c:"🍷",r:75},
+ {n:"Talleres",full:"Talleres",c:"🔵⚪",r:77},{n:"Belgrano",full:"Belgrano",c:"🔵",r:73},
+ {n:"Rosario Central",full:"Rosario Central",c:"🟡🔵",r:76},{n:"Newell's",full:"Newell's Old Boys",c:"🔴⚫",r:74},
+ {n:"Vélez",full:"Vélez Sarsfield",c:"🔵⚪",r:78},{n:"Huracán",full:"Huracán",c:"⚪🔴",r:74}
+];
+const $=id=>document.getElementById(id);
+let user,opponent,round=1,wins=0,draws=0,losses=0,points=0,played=false,table=[];
+function getClub(n){return clubs.find(c=>c.n===n)||clubs[0]}
+function chooseOpponent(){let pool=clubs.filter(c=>c.n!==user.n);return pool[Math.floor(Math.random()*pool.length)]}
+function preview(){let c=getClub($("club").value);$("previewName").textContent=c.full;$("previewCrest").textContent=c.c;$("rating").textContent=c.r}
+$("club").addEventListener("change",preview);preview();
+function start(){user=getClub($("club").value);opponent=chooseOpponent();round=1;wins=draws=losses=points=0;played=false;table=clubs.slice(0,8).map(c=>({club:c,pts:Math.floor(Math.random()*7)}));if(!table.some(x=>x.club.n===user.n))table[7]={club:user,pts:0};$("game").classList.remove("hidden");$("welcome").textContent="Bienvenido, DT de "+user.full;$("homeCrest").textContent=user.c;$("homeName").textContent=user.n.toUpperCase();setOpponent();$("score").textContent="— : —";$("clock").textContent="LISTO PARA JUGAR";$("events").textContent="Elegí jugar para simular el partido.";$("lastResult").textContent="Todavía no jugaste partidos.";updateStats();renderTable();$("game").scrollIntoView({behavior:"smooth",block:"start"})}
+function setOpponent(){ $("awayCrest").textContent=opponent.c;$("awayName").textContent=opponent.n.toUpperCase();$("round").textContent="FECHA "+round; }
+function updateStats(){$("wins").textContent=wins;$("draws").textContent=draws;$("losses").textContent=losses}
+function renderTable(){let sorted=table.slice().sort((a,b)=>b.pts-a.pts);$("tableBody").innerHTML=sorted.map((x,i)=>`<tr><td class="rank">${i+1}</td><td class="clubcell ${x.club.n===user.n?'you':''}">${x.club.n===user.n?'★ ':''}${x.club.n}</td><td>${x.pts}</td></tr>`).join("")}
+function playMatch(){if(!user){start()}if(played){$("events").textContent="Ya jugaste esta fecha. Tocá «Siguiente fecha» para continuar.";return}played=true;let tactic=$("tactic").value;let boost=tactic==="attack"?3:tactic==="defense"?-1:1;let homePower=user.r+boost+Math.random()*22;let awayPower=opponent.r+Math.random()*22;let hg=Math.max(0,Math.min(5,Math.floor(Math.random()*3+(homePower-awayPower+8)/22)));let ag=Math.max(0,Math.min(5,Math.floor(Math.random()*3+(awayPower-homePower+5)/24)));if(Math.random()<.2)hg=Math.min(5,hg+1);if(Math.random()<.16)ag=Math.min(5,ag+1);$("score").textContent=hg+" : "+ag;$("clock").textContent="FINAL · 90:00";let moments=[];if(hg)moments.push("⚽ "+user.n+" marcó "+hg+" gol"+(hg===1?"":"es"));if(ag)moments.push("⚽ "+opponent.n+" marcó "+ag+" gol"+(ag===1?"":"es"));if(!hg&&!ag)moments.push("Partido cerrado: no hubo goles.");moments.push("🟨 Hubo tarjetas durante el encuentro.");$("events").textContent=moments.join(" · ");if(hg>ag){wins++;points+=3;userRow().pts+=3}else if(hg===ag){draws++;points++;userRow().pts+=1}else{losses++}opponentRow().pts+=ag>hg?3:ag===hg?1:0;updateStats();renderTable();$("lastResult").innerHTML=`<span style="color:var(--green)">${user.n} ${hg} – ${ag} ${opponent.n}</span><br><span style="font-size:12px;color:var(--muted);font-weight:500">Fecha ${round} · Finalizado</span>`}
+function userRow(){let x=table.find(x=>x.club.n===user.n);if(!x){x={club:user,pts:0};table.push(x)}return x}
+function opponentRow(){let x=table.find(x=>x.club.n===opponent.n);if(!x){x={club:opponent,pts:0};table.push(x)}return x}
+function nextRound(){if(!user){start();return}round++;played=false;opponent=chooseOpponent();setOpponent();$("score").textContent="— : —";$("clock").textContent="LISTO PARA JUGAR";$("events").textContent="Fecha "+round+": prepará tu táctica y simulá el partido."; $("lastResult").textContent="Próximo partido: "+user.n+" vs. "+opponent.n+"."; }
+$("start").addEventListener("click",start);$("play").addEventListener("click",playMatch);$("next").addEventListener("click",nextRound);$("back").addEventListener("click",()=>{ $("game").classList.add("hidden");window.scrollTo({top:0,behavior:"smooth"})});
+</script>
+</body>
+</html>
